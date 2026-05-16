@@ -23,6 +23,44 @@ document.addEventListener('click', (e) => {
     }
 });
 
+// ==================== DARK / LIGHT MODE SWITCH ==================== 
+const themeToggle = document.getElementById('themeToggle');
+const pageBody = document.body;
+
+const updateThemeIcon = () => {
+    const icon = themeToggle.querySelector('i');
+    if (pageBody.classList.contains('dark-theme')) {
+        icon.classList.remove('fa-moon');
+        icon.classList.add('fa-sun');
+        themeToggle.setAttribute('aria-label', 'Wechsel zu hellem Modus');
+    } else {
+        icon.classList.remove('fa-sun');
+        icon.classList.add('fa-moon');
+        themeToggle.setAttribute('aria-label', 'Wechsel zu dunklem Modus');
+    }
+};
+
+const setTheme = (theme) => {
+    if (theme === 'dark') {
+        pageBody.classList.add('dark-theme');
+    } else {
+        pageBody.classList.remove('dark-theme');
+    }
+    localStorage.setItem('theme', theme);
+    updateThemeIcon();
+};
+
+if (themeToggle) {
+    const savedTheme = localStorage.getItem('theme');
+    const preferredTheme = savedTheme || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    setTheme(preferredTheme);
+
+    themeToggle.addEventListener('click', () => {
+        const nextTheme = pageBody.classList.contains('dark-theme') ? 'light' : 'dark';
+        setTheme(nextTheme);
+    });
+}
+
 // ==================== SCROLL EFFECTS ==================== 
 window.addEventListener('scroll', () => {
     const header = document.querySelector('.header');

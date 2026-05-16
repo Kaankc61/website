@@ -24,6 +24,19 @@
     --transition: 0.3s ease;
 }
 
+body.dark-theme {
+    --light-bg: #090b17;
+    --white: #111827;
+    --text-dark: #f7fbff;
+    --text-light: #a8b4d4;
+    --border-color: #2b3655;
+    --primary-light: #1a3dff;
+    --secondary-light: #5e1414;
+    --dark-bg: #050710;
+    --header-bg: #0f172a;
+    --surface-bg: #111827;
+}
+
 /* ==================== GRUNDEINSTELLUNGEN ==================== */
 * {
     margin: 0;
@@ -132,6 +145,31 @@ body {
     background-color: var(--text-dark);
     border-radius: 2px;
     transition: var(--transition);
+}
+
+.theme-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    background-color: var(--white);
+    color: var(--text-dark);
+    cursor: pointer;
+    transition: var(--transition);
+    margin-left: 20px;
+}
+
+.theme-toggle i {
+    font-size: 16px;
+}
+
+.theme-toggle:hover {
+    transform: translateY(-2px);
+    border-color: var(--primary-color);
+    color: var(--primary-color);
 }
 
 .hamburger.active span:nth-child(1) {
